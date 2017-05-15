@@ -163,7 +163,7 @@ public class PooledDatasourceHelper {
       poolingDataSource = new PoolingDataSource();
       if ( dialect instanceof IDriverLocator ) {
         if ( !( (IDriverLocator) dialect ).initialize( driverClass ) ) {
-          throw new RuntimeException( Messages.getInstance()
+          throw new DriverInitializeFailedException( Messages.getInstance()
             .getErrorString( "PooledDatasourceHelper.ERROR_0009_UNABLE_TO_POOL_DATASOURCE_CANT_INITIALIZE",
               databaseConnection.getName(), driverClass ) );
         }
@@ -382,7 +382,7 @@ public class PooledDatasourceHelper {
                                        String databaseConnectionName ) throws DBDatasourceServiceException {
     if ( dialect instanceof IDriverLocator ) {
       if ( !( (IDriverLocator) dialect ).initialize( driverClassName ) ) {
-        throw new RuntimeException( Messages.getInstance()
+        throw new DriverInitializeFailedException( Messages.getInstance()
           .getErrorString( "PooledDatasourceHelper.ERROR_0009_UNABLE_TO_POOL_DATASOURCE_CANT_INITIALIZE",
             databaseConnectionName, driverClassName ) );
       }

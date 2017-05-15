@@ -89,6 +89,7 @@ public interface IDBDatasourceService {
    * @return Returns the bound data source name if it is bound in JNDI (e.g. "jdbc/SampleData").
    * @throws DBDatasourceServiceException
    */
+  
   public String getDSBoundName( String dsName ) throws DBDatasourceServiceException;
 
   /**
