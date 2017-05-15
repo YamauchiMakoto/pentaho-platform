@@ -42,6 +42,12 @@ public class DynamicallyPooledDatasourceSystemListener extends PooledDatasourceS
     DataSource ds = null;
     try {
       ds = getDatasourceService().getDataSource( connection.getName() );
+    } catch ( RuntimeException e ) {
+      if ( e.getClass() != RuntimeException.class ){
+        throw e;
+      }
+      Logger.error( this, Messages.getInstance()
+          .getErrorString( "PooledDatasourceHelper.ERROR_0009_UNABLE_TO_POOL_DATASOURCE_CANT_INITIALIZE", connection.getName(), e.getMessage() ) ); //$NON-NLS-1$
     } catch ( DBDatasourceServiceException e ) {
       Logger.error( this, Messages.getInstance()
           .getErrorString( "DatasourceSystemListener.ERROR_0003_UNABLE_TO_POOL_DATASOURCE", connection.getName(), e.getMessage() ) ); //$NON-NLS-1$
